@@ -1,6 +1,6 @@
 <?php
-/**
- * ClaudeMods Links Page - Compact Version with Integrated Distribution Gallery and Guide to Linux
+/** Copyright (c) 2025 claudemods
+ * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
 // Set headers to prevent caching
