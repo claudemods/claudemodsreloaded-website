@@ -742,7 +742,7 @@ $author = "Aaron Douglas D'souza";
             </div>
             
             <div class="badge-row">
-                <a href="https://www.claudemodsreloaded.com" target="_blank" class="badge badge-gold">claudemods v3.0</a>
+                <a href="https://www.claudemodsreloaded.com" target="_blank" class="badge badge-gold">claudemods website v3.0</a>
                 <a href="https://www.gtainside.com/user/mapmods100" target="_blank" class="badge badge-gold">gta inside v1.5</a>
                 <a href="https://drive.google.com/drive/folders/1MH0CHGvwdDzGSXpjgfBqvfty_asq6cqf" target="_blank" class="badge badge-gold">Google Drive v2.0</a>
                 <a href="https://sourceforge.net/projects/claudemods/" target="_blank" class="badge badge-gold">Sourceforge v2.0</a>
