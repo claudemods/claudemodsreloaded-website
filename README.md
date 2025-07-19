@@ -54,7 +54,7 @@ Each overlay provides a focused experience:
 
 ### 3. **Embedded YouTube Audio**
 Background music enhances the user experience:
-- Main page audio loops continuously.
+- All Pages Have There Own Audio
 - Overlay-specific audio starts when opened and pauses when closed.
 
 ---
