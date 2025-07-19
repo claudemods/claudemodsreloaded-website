@@ -100,6 +100,6 @@ If you find this project helpful, consider supporting the developer:
 ---
 
 ## License 📜
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Open Source License. See the [LICENSE](LICENSE) file for details.
 
 ---
