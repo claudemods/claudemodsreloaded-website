@@ -3,6 +3,8 @@
 
 # www.claudemodsreloaded.com 🚀
 
+claudemods website v3.0
+
 ## Overview 📋
 ClaudeMods Reloaded is a visually immersive website designed to provide Linux enthusiasts with custom distributions, tools, guides, and resources. The site features interactive overlays, dynamic badges, embedded YouTube audio, and smooth animations for an engaging user experience.
 
