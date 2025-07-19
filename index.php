@@ -1,5 +1,6 @@
 <?php
 /** Copyright (c) 2025 claudemods
+ * claudemods website v3.0 19-07-2025
  * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
