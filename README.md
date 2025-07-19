@@ -1,3 +1,5 @@
+# www.claudemodsreloaded.com 🚀
+
 <p align="center">
   <img src="https://i.postimg.cc/JhMRf2RZ/claudemods-03-17-2025.gif">
 </p>
@@ -7,9 +9,6 @@
     <img alt="Homepage" src="https://i.postimg.cc/Hs2vbbZ8/Deep-Seek-Homepage.png" style="height: 30px; width: auto;">
   </a>
 
-# www.claudemodsreloaded.com 🚀
-
-claudemods website v3.0
 
 ## Overview 📋
 claudemodsreloaded website is a visually immersive website designed to provide Linux enthusiasts with custom distributions, tools, guides, and resources. The site features interactive overlays, dynamic badges, embedded YouTube audio, and smooth animations for an engaging user experience.
