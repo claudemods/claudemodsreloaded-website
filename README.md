@@ -1,5 +1,7 @@
-
-
+div align="center">
+  <a href="https://www.deepseek.com/" target="_blank">
+    <img alt="Homepage" src="https://i.postimg.cc/Hs2vbbZ8/Deep-Seek-Homepage.png" style="height: 30px; width: auto;">
+  </a>
 
 # www.claudemodsreloaded.com 🚀
 
