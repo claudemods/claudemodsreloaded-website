@@ -723,7 +723,7 @@ $author = "Aaron Douglas D'souza";
             <a href="#" class="top-button" id="show-gallery">Distributions</a>
             <a href="#" class="top-button" id="show-guide">Guide to Linux</a>
             <a href="#" class="top-button" id="show-ccm">ClaudeModsCCM</a>
-            <button class="support-button" onclick="window.open('https://www.paypal.com/paypalme/claudemods?country.x=GB&locale.x=en_GB', '_blank')">
+            <button class="support-button" onclick="window.open('https://ko-fi.com/claudemods', '_blank')">
                 Support My Work
             </button>
         </div>
