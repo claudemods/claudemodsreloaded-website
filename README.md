@@ -22,9 +22,12 @@ claudemodsreloaded website is a visually immersive website designed to provide L
 ## Features ✨
 
 ### 1. **Interactive Overlays**
-- **Distributions Overlay** 🖥️: Explore custom Linux distributions like Arch and CachyOS with images, descriptions, and badges.
-- **Guide to Linux Overlay** 📚: Access tutorials, system commands, and tools for Linux users.
-- **ClaudeMods CCM Overlay** 🛠️: Discover a curated list of tools, utilities, and resources for Linux developers and gamers.
+- **Distributions Overlay** 🖥️:
+- Explore custom Linux distributions like Arch and CachyOS with images, descriptions, and badges.
+- **Guide to Linux Overlay** 📚:
+-  Access tutorials, system commands, and tools for Linux users.
+- **ClaudeMods CCM Overlay** 🛠️:
+- Discover a curated list of tools, utilities, and resources for Linux developers and gamers.
 
 ### 2. **Dynamic Content Sections**
 - **Badges**: Highlight key projects and links (e.g., Arch Linux, CachyOS).
