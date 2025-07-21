@@ -1,7 +1,7 @@
 <?php
 /** Copyright (c) 2025 claudemods
- * claudemods website v3.0.1 19-07-2025
- * added pwa support
+ * claudemods website v3.01 19-07-2025
+ * pwa support added
  * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
@@ -10,7 +10,10 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-
+$page_title = "ClaudeMods Reloaded";
+$guide_title = "Guide To Linux";
+$author = "Aaron Douglas D'souza";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,21 +31,6 @@ header("Pragma: no-cache");
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#00568f">
-    
-    <title><?php echo htmlspecialchars($page_title); ?></title>
-
-$page_title = "ClaudeMods Reloaded";
-$guide_title = "Guide To Linux";
-$author = "Aaron Douglas D'souza";
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <style>
         :root {
@@ -1429,7 +1417,7 @@ create arch bootable usb
 
     <!-- YouTube API Script -->
     <script>
-        // YouTube API Script
+               // YouTube API Script
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
