@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaudeMods Reloaded - Offline</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #00568f 0%, #003366 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 
+                        0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 3px solid #00FFFF;
+            max-width: 500px;
+        }
+        h1 {
+            color: #dfc43d;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #00FFFF;
+            font-weight: bold;
+        }
+        button {
+            background-color: #dfc43d;
+            color: #00568f;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You're Offline</h1>
+        <p>It seems you've lost your internet connection. Some content may not be available.</p>
+        <p class="highlight">Don't worry! You can still access previously viewed content.</p>
+        <button onclick="window.location.reload()">Try Again</button>
+    </div>
+</body>
+</html>
