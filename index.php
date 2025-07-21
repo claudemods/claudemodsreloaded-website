@@ -28,6 +28,7 @@ $author = "Aaron Douglas D'souza";
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ClaudeMods">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="/styles/pwa-styles.css">
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#00568f">
