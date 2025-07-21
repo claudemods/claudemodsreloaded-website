@@ -1,7 +1,8 @@
 <?php
-/** Copyright (c) 2025 claudemods
- * claudemods website v3.01 19-07-2025
- * pwa support added
+/** Copyright (c) 2023-2025 claudemods
+ * claudemods website v3.01 21-07-2025
+ * pwa support added but not working
+ * new copyright notice
  * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
@@ -717,6 +718,16 @@ $author = "Aaron Douglas D'souza";
             flex-wrap: wrap;
             justify-content: space-between;
         }
+        
+        /* Footer styles */
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            color: var(--highlight);
+            font-size: 12px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -802,6 +813,11 @@ $author = "Aaron Douglas D'souza";
                 Configuration copied to clipboard!
             </div>
         </div>
+        
+        <!-- Footer added here -->
+        <div class="footer">
+            Copyright (c) 2023-2025 claudemods
+        </div>
     </div>
 
     <!-- Distribution Gallery Overlay -->
@@ -867,6 +883,11 @@ $author = "Aaron Douglas D'souza";
                         <img src="https://i.postimg.cc/7Y7Zj108/apextools-high.webp" alt="Apex Gamester">
                     </div>
                 </div>
+            </div>
+            
+            <!-- Footer added here -->
+            <div class="footer">
+                Copyright (c) 2023-2025 claudemods
             </div>
         </div>
     </div>
@@ -1151,6 +1172,11 @@ $author = "Aaron Douglas D'souza";
                         </div>
                     </div>
                 </div>
+                
+                <!-- Footer added here -->
+                <div class="footer">
+                    Copyright (c) 2023-2025 claudemods
+                </div>
             </div>
         </div>
     </div>
@@ -1411,6 +1437,11 @@ custom arch btrfs installer script
 create arch bootable usb
 <a href="https://github.com/claudemods/ApexBootableUsbAppimage" class="guide-a">ApexBootableUsb</a>
                     </pre>
+                </div>
+                
+                <!-- Footer added here -->
+                <div class="footer">
+                    Copyright (c) 2023-2025 claudemods
                 </div>
             </div>
         </div>
