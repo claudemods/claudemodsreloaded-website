@@ -1,9 +1,9 @@
 <?php
 /** Copyright (c) 2023-2025 claudemods
- * claudemods website v3.01.1 25-07-2025
+ * claudemods website v3.01.2 25-07-2025
  * pwa support added but not working
  * new copyright notice
- - 25-07-2025 added new news button
+ *  new button animations and other animations thats all for today 
  * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
@@ -12,7 +12,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-$page_title = "ClaudeMods Reloaded";
+$page_title = "claudemods reloaded";
 $guide_title = "Guide To Linux";
 $author = "Aaron Douglas D'souza";
 ?>
@@ -67,18 +67,18 @@ $author = "Aaron Douglas D'souza";
             flex-direction: column;
             align-items: center;
             line-height: 1.2;
-            font-size: 14px; /* Increased from 12px */
+            font-size: 14px;
             overflow: hidden;
             position: relative;
         }
 
         .container {
             width: 99%;
-            max-width: 900px; /* Increased from 850px */
+            max-width: 900px;
             background-color: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(8px);
             border-radius: 6px;
-            padding: 10px; /* Increased from 6px */
+            padding: 10px;
             box-shadow: var(--cyan-glow), 
                         0 3px 10px rgba(0, 0, 0, 0.2);
             border: 3px solid var(--highlight);
@@ -86,94 +86,202 @@ $author = "Aaron Douglas D'souza";
             transition: transform 0.3s ease;
         }
 
+        /* Updated GIF style with cyan glow */
         .header-gif {
-            max-width: 85%; /* Increased from 80% */
+            max-width: 85%;
             height: auto;
-            margin: 0 auto 8px; /* Increased from 4px */
+            margin: 0 auto 8px;
             display: block;
             border-radius: 3px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            transition: all 0.3s ease;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            }
+            100% {
+                box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+            }
         }
 
         .top-button-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 6px; /* Increased from 4px */
-            margin-bottom: 10px; /* Increased from 6px */
+            gap: 6px;
+            margin-bottom: 10px;
         }
 
-        .top-button {
-            padding: 6px 12px; /* Increased from 3px 8px */
+        /* Updated button styles with animations */
+        .top-button, .support-button, .repo-button {
+            padding: 6px 12px;
             border-radius: 3px;
             font-weight: 600;
             text-decoration: none;
             background-color: var(--secondary);
             color: var(--primary);
-            transition: all 0.15s ease;
-            font-size: 12px; /* Increased from 11px to match bottom buttons */
+            transition: all 0.3s ease;
+            font-size: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             white-space: nowrap;
-            height: 30px; /* Added fixed height to match bottom buttons */
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: button-pulse 2s infinite alternate;
         }
 
-        .top-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        .support-button {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .repo-button {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        @keyframes button-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                transform: scale(1.05);
+                box-shadow: 0 0 10px var(--secondary), 0 0 20px rgba(0, 255, 255, 0.3);
+            }
+        }
+
+        .top-button:hover, .support-button:hover, .repo-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .top-button::before, .support-button::before, .repo-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 255, 255, 0),
+                rgba(0, 255, 255, 0.3),
+                rgba(0, 255, 255, 0)
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .top-button:hover::before, .support-button:hover::before, .repo-button:hover::before {
+            animation: shine 1.5s;
+            opacity: 1;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                top: -100%;
+            }
+            100% {
+                left: 100%;
+                top: 100%;
+            }
         }
 
         .badge-container {
             display: flex;
             flex-direction: column;
-            gap: 6px; /* Increased from 4px */
-            margin: 10px 0; /* Increased from 6px 0 */
+            gap: 6px;
+            margin: 10px 0;
         }
 
         .badge-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 6px; /* Increased from 4px */
+            gap: 6px;
         }
 
+        /* Animated badges */
         .badge {
-            padding: 5px 8px; /* Increased from 3px 6px */
+            padding: 5px 8px;
             border-radius: 10px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.15s ease;
-            font-size: 11px; /* Increased from 9px */
+            transition: all 0.3s ease;
+            font-size: 11px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             white-space: nowrap;
-            height: 30px; /* Added fixed height */
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: badge-float 3s infinite ease-in-out;
         }
 
-        .badge-red { background-color: var(--badge-red); color: white; }
-        .badge-teal { background-color: var(--badge-teal); color: white; }
-        .badge-gold { background-color: var(--badge-gold); color: #000; }
+        @keyframes badge-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
 
+        .badge-red { 
+            background-color: var(--badge-red); 
+            color: white;
+            animation-delay: 0.1s;
+        }
+        .badge-teal { 
+            background-color: var(--badge-teal); 
+            color: white;
+            animation-delay: 0.2s;
+        }
+        .badge-gold { 
+            background-color: var(--badge-gold); 
+            color: #000;
+            animation-delay: 0.3s;
+        }
+
+        /* Rest of your existing CSS remains the same */
         .content-section {
-            margin: 10px 0; /* Increased from 6px 0 */
+            margin: 10px 0;
             text-align: center;
         }
 
         .welcome-text {
             color: var(--warning);
-            font-size: 14px; /* Increased from 12px */
+            font-size: 14px;
             font-weight: 700;
-            margin: 6px 0; /* Increased from 4px 0 */
+            margin: 6px 0;
+            animation: text-flicker 3s infinite alternate;
+        }
+
+        @keyframes text-flicker {
+            0% {
+                text-shadow: 0 0 5px var(--warning);
+            }
+            100% {
+                text-shadow: 0 0 10px var(--warning), 0 0 20px var(--warning);
+            }
         }
 
         .description-text {
             color: var(--highlight);
-            font-size: 13px; /* Increased from 11px */
-            margin: 0 auto 10px; /* Increased from 0 auto 6px */
+            font-size: 13px;
+            margin: 0 auto 10px;
             line-height: 1.3;
         }
 
@@ -182,10 +290,15 @@ $author = "Aaron Douglas D'souza";
             text-decoration: none;
             font-weight: 600;
             border-bottom: 1px dotted var(--highlight);
+            transition: all 0.3s ease;
+        }
+
+        .description-text a:hover {
+            text-shadow: 0 0 5px var(--highlight);
         }
 
         .repo-section, .copy-section {
-            margin: 10px 0; /* Increased from 6px 0 */
+            margin: 10px 0;
             text-align: center;
         }
 
@@ -193,62 +306,50 @@ $author = "Aaron Douglas D'souza";
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 6px; /* Increased from 4px */
-        }
-
-        .repo-button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 6px 12px; /* Increased from 3px 8px */
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px; /* Increased from 11px */
-            transition: all 0.15s ease;
-            height: 30px; /* Added fixed height */
-        }
-
-        .repo-button:hover {
-            background-color: #9a0028;
-            transform: translateY(-1px);
+            gap: 6px;
         }
 
         .repo-options {
             display: none;
-            margin-top: 6px; /* Increased from 4px */
+            margin-top: 6px;
             background-color: rgba(0, 0, 0, 0.3);
             border-radius: 3px;
-            padding: 6px; /* Increased from 4px */
+            padding: 6px;
             animation: fadeIn 0.15s ease-out;
         }
 
         .repo-option {
             display: block;
-            padding: 5px 8px; /* Increased from 3px 6px */
-            margin: 3px 0; /* Increased from 2px 0 */
+            padding: 5px 8px;
+            margin: 3px 0;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 2px;
             color: white;
             text-decoration: none;
-            font-size: 11px; /* Increased from 10px */
+            font-size: 11px;
+            transition: all 0.3s ease;
+        }
+
+        .repo-option:hover {
+            background-color: rgba(0, 255, 255, 0.2);
+            transform: translateX(5px);
         }
 
         .copy-notification {
             display: none;
             color: var(--success);
-            margin-top: 5px; /* Increased from 3px */
-            font-size: 11px; /* Increased from 10px */
+            margin-top: 5px;
+            font-size: 11px;
             font-weight: 600;
             animation: fadeIn 0.15s ease-out;
         }
 
-        /* Rest of the CSS remains unchanged */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
+        /* Rest of your existing CSS remains unchanged */
         /* Distribution Gallery Styles - Left Animation */
         .gallery-overlay {
             position: fixed;
@@ -375,6 +476,7 @@ $author = "Aaron Douglas D'souza";
             font-weight: 600;
             z-index: 1001;
             box-shadow: 0 0 5px var(--highlight);
+            transition: all 0.3s ease;
         }
 
         .close-gallery:hover,
@@ -382,6 +484,7 @@ $author = "Aaron Douglas D'souza";
         .close-guide:hover {
             background-color: #9a0028;
             box-shadow: 0 0 10px var(--highlight);
+            transform: rotate(90deg);
         }
 
         .gallery-badges {
@@ -527,6 +630,19 @@ $author = "Aaron Douglas D'souza";
             margin-bottom: 15px;
             border: 3px solid var(--highlight);
             box-shadow: var(--cyan-glow);
+            animation: profile-pulse 3s infinite;
+        }
+
+        @keyframes profile-pulse {
+            0% {
+                box-shadow: 0 0 10px var(--highlight);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--highlight);
+            }
+            100% {
+                box-shadow: 0 0 10px var(--highlight);
+            }
         }
 
         .guide-pre {
@@ -655,50 +771,13 @@ $author = "Aaron Douglas D'souza";
             z-index: 100;
             text-decoration: none;
             display: none;
+            transition: all 0.3s ease;
         }
         
         .back-button:hover {
             background-color: #cc0000;
             box-shadow: 0 0 10px rgba(255,0,0,0.5);
-        }
-
-        /* Support Me Button Styles - Updated to match top-button */
-        .support-button {
-            padding: 6px 12px;
-            border-radius: 3px;
-            font-weight: 600;
-            text-decoration: none;
-            background-color: var(--secondary);
-            color: var(--primary);
-            transition: all 0.15s ease;
-            font-size: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .support-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-        }
-
-        @media (max-width: 768px) {
-            .gallery-image-pair {
-                width: 100%;
-            }
-            
-            .gallery-image-pair.left, .gallery-image-pair.right {
-                animation-delay: 0.5s !important;
-            }
-            
-            .tool-list {
-                grid-template-columns: 1fr;
-            }
+            transform: translateX(-5px);
         }
 
         /* When gallery/ccm/guide is open, shift main content */
@@ -728,6 +807,30 @@ $author = "Aaron Douglas D'souza";
             color: var(--highlight);
             font-size: 12px;
             margin-top: 20px;
+            animation: footer-glow 5s infinite alternate;
+        }
+
+        @keyframes footer-glow {
+            0% {
+                text-shadow: 0 0 5px var(--highlight);
+            }
+            100% {
+                text-shadow: 0 0 10px var(--highlight);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-image-pair {
+                width: 100%;
+            }
+            
+            .gallery-image-pair.left, .gallery-image-pair.right {
+                animation-delay: 0.5s !important;
+            }
+            
+            .tool-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -743,7 +846,7 @@ $author = "Aaron Douglas D'souza";
     
     <div class="container">
         <div class="top-button-row">
-                        <button class="support-button" onclick="window.open('https://claudemodsreloaded.com/claudemodsnews.php', '_blank')">
+            <button class="support-button" onclick="window.open('https://claudemodsreloaded.com/claudemodsnews.php', '_blank')">
                 claudemods news
             </button>
             <a href="#" class="top-button" id="show-gallery">Distributions</a>
@@ -768,7 +871,7 @@ $author = "Aaron Douglas D'souza";
             </div>
             
             <div class="badge-row">
-                <a href="https://www.claudemodsreloaded.com" target="_blank" class="badge badge-gold">claudemods website v3.0</a>
+                <a href="https://www.claudemodsreloaded.com" target="_blank" class="badge badge-gold">claudemods website v3.01.1</a>
                 <a href="https://www.gtainside.com/user/mapmods100" target="_blank" class="badge badge-gold">gta inside v1.5</a>
                 <a href="https://drive.google.com/drive/folders/1MH0CHGvwdDzGSXpjgfBqvfty_asq6cqf" target="_blank" class="badge badge-gold">Google Drive v2.0</a>
                 <a href="https://sourceforge.net/projects/claudemods/" target="_blank" class="badge badge-gold">Sourceforge v2.0</a>
@@ -1453,167 +1556,167 @@ create arch bootable usb
 
     <!-- YouTube API Script -->
     <script>
-               // YouTube API Script
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        // YouTube API Script
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var mainPlayer, galleryPlayer, guidePlayer, ccmPlayer;
+        var mainPlayer, galleryPlayer, guidePlayer, ccmPlayer;
 
-function onYouTubeIframeAPIReady() {
-    // Main page player (audio only)
-    mainPlayer = new YT.Player('youtube-player-main', {
-        videoId: 'MyhlgjOm5E8',
-        playerVars: {
-            'autoplay': 1,
-            'controls': 0,
-            'disablekb': 1,
-            'fs': 0,
-            'loop': 1,
-            'modestbranding': 1,
-            'playsinline': 1,
-            'rel': 0,
-            'showinfo': 0,
-            'iv_load_policy': 3,
-            'enablejsapi': 1
-        },
-        events: {
-            'onReady': onMainPlayerReady,
-            'onStateChange': onMainPlayerStateChange
+        function onYouTubeIframeAPIReady() {
+            // Main page player (audio only)
+            mainPlayer = new YT.Player('youtube-player-main', {
+                videoId: 'MyhlgjOm5E8',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onMainPlayerReady,
+                    'onStateChange': onMainPlayerStateChange
+                }
+            });
+
+            // Gallery player (audio only)
+            galleryPlayer = new YT.Player('youtube-player-gallery', {
+                videoId: 'P5ZNMGPv7Qc',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onGalleryPlayerReady,
+                    'onStateChange': onGalleryPlayerStateChange
+                }
+            });
+
+            // Guide player (audio only)
+            guidePlayer = new YT.Player('youtube-player-guide', {
+                videoId: 'TxgLIUJ_c48',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onGuidePlayerReady,
+                    'onStateChange': onGuidePlayerStateChange
+                }
+            });
+
+            // CCM player (audio only) - Using your specified video ID
+            ccmPlayer = new YT.Player('youtube-player-ccm', {
+                videoId: 'TSnc3lXrFpE',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onCcmPlayerReady,
+                    'onStateChange': onCcmPlayerStateChange
+                }
+            });
         }
-    });
 
-    // Gallery player (audio only)
-    galleryPlayer = new YT.Player('youtube-player-gallery', {
-        videoId: 'P5ZNMGPv7Qc',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'disablekb': 1,
-            'fs': 0,
-            'loop': 1,
-            'modestbranding': 1,
-            'playsinline': 1,
-            'rel': 0,
-            'showinfo': 0,
-            'iv_load_policy': 3,
-            'enablejsapi': 1
-        },
-        events: {
-            'onReady': onGalleryPlayerReady,
-            'onStateChange': onGalleryPlayerStateChange
-        }
-    });
-
-    // Guide player (audio only)
-    guidePlayer = new YT.Player('youtube-player-guide', {
-        videoId: 'TxgLIUJ_c48',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'disablekb': 1,
-            'fs': 0,
-            'loop': 1,
-            'modestbranding': 1,
-            'playsinline': 1,
-            'rel': 0,
-            'showinfo': 0,
-            'iv_load_policy': 3,
-            'enablejsapi': 1
-        },
-        events: {
-            'onReady': onGuidePlayerReady,
-            'onStateChange': onGuidePlayerStateChange
-        }
-    });
-
-    // CCM player (audio only) - Using your specified video ID
-    ccmPlayer = new YT.Player('youtube-player-ccm', {
-        videoId: 'TSnc3lXrFpE',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'disablekb': 1,
-            'fs': 0,
-            'loop': 1,
-            'modestbranding': 1,
-            'playsinline': 1,
-            'rel': 0,
-            'showinfo': 0,
-            'iv_load_policy': 3,
-            'enablejsapi': 1
-        },
-        events: {
-            'onReady': onCcmPlayerReady,
-            'onStateChange': onCcmPlayerStateChange
-        }
-    });
-}
-
-function onMainPlayerReady(event) {
-    event.target.mute();
-    event.target.playVideo();
-    setTimeout(function() {
-        event.target.unMute();
-    }, 1000);
-}
-
-function onMainPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (!document.body.classList.contains('gallery-open') && 
-            !document.body.classList.contains('ccm-open') && 
-            !document.body.classList.contains('guide-open')) {
+        function onMainPlayerReady(event) {
+            event.target.mute();
             event.target.playVideo();
+            setTimeout(function() {
+                event.target.unMute();
+            }, 1000);
         }
-    }
-}
 
-function onGalleryPlayerReady(event) {
-    // Gallery player will be started when gallery is opened
-}
-
-function onGalleryPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (document.body.classList.contains('gallery-open')) {
-            event.target.playVideo();
+        function onMainPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                if (!document.body.classList.contains('gallery-open') && 
+                    !document.body.classList.contains('ccm-open') && 
+                    !document.body.classList.contains('guide-open')) {
+                    event.target.playVideo();
+                }
+            }
         }
-    }
-}
 
-function onGuidePlayerReady(event) {
-    // Guide player will be started when guide is opened
-}
-
-function onGuidePlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (document.body.classList.contains('guide-open')) {
-            event.target.playVideo();
+        function onGalleryPlayerReady(event) {
+            // Gallery player will be started when gallery is opened
         }
-    }
-}
 
-function onCcmPlayerReady(event) {
-    // CCM player will be started when CCM is opened
-}
-
-function onCcmPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (document.body.classList.contains('ccm-open')) {
-            event.target.playVideo();
+        function onGalleryPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                if (document.body.classList.contains('gallery-open')) {
+                    event.target.playVideo();
+                }
+            }
         }
-    }
-}
 
-function toggleRepo(version) {
-    document.getElementById('v1-repo-options').style.display = 'none';
-    document.getElementById('v2-repo-options').style.display = 'none';
-    document.getElementById(version + '-repo-options').style.display = 'block';
-}
+        function onGuidePlayerReady(event) {
+            // Guide player will be started when guide is opened
+        }
 
-function copyRepoConfig(version) {
-    let configText = version === 'v1' ? 
-        `[claudemods-v1-kernels-tested]
+        function onGuidePlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                if (document.body.classList.contains('guide-open')) {
+                    event.target.playVideo();
+                }
+            }
+        }
+
+        function onCcmPlayerReady(event) {
+            // CCM player will be started when CCM is opened
+        }
+
+        function onCcmPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                if (document.body.classList.contains('ccm-open')) {
+                    event.target.playVideo();
+                }
+            }
+        }
+
+        function toggleRepo(version) {
+            document.getElementById('v1-repo-options').style.display = 'none';
+            document.getElementById('v2-repo-options').style.display = 'none';
+            document.getElementById(version + '-repo-options').style.display = 'block';
+        }
+
+        function copyRepoConfig(version) {
+            let configText = version === 'v1' ? 
+                `[claudemods-v1-kernels-tested]
 SigLevel = Never
 Server = https://claudemodsreloaded.com/v1-kernels-tested
 
@@ -1624,7 +1727,7 @@ Server = https://github.com/claudemods/claudemods-v1/releases/download/v1-core/
 [claudemods-v1-base]
 SigLevel = Never
 Server = https://claudemodsreloaded.com/v1-base-final/` :
-        `[claudemods-v2-kernels-rolling] 🚀
+                `[claudemods-v2-kernels-rolling] 🚀
 SigLevel = Never
 Server = https://claudemodsreloaded.com/v2-kernels-rolling/  
 
@@ -1639,338 +1742,338 @@ Server = https://claudemodsreloaded.com/v2-core/
 [claudemods-v2-desktop] 🚀
 SigLevel = Never
 Server = https://claudemodsreloaded.com/v2-desktop/`;
-    
-    navigator.clipboard.writeText(configText).then(() => {
-        const notification = document.getElementById('copy-notification');
-        notification.style.display = 'block';
-        setTimeout(() => notification.style.display = 'none', 2000);
-    });
-}
-
-// PWA Service Worker Registration
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                
-                // Check for updates periodically
-                setInterval(() => {
-                    registration.update().then(() => {
-                        console.log('Checking for service worker update');
-                    });
-                }, 60 * 60 * 1000); // Check every hour
-            })
-            .catch(err => {
-                console.log('ServiceWorker registration failed: ', err);
+            
+            navigator.clipboard.writeText(configText).then(() => {
+                const notification = document.getElementById('copy-notification');
+                notification.style.display = 'block';
+                setTimeout(() => notification.style.display = 'none', 2000);
             });
-    });
-}
+        }
 
-// PWA Install Prompt Handling
-let deferredPrompt;
-const installButton = document.createElement('button');
-installButton.textContent = 'Install ClaudeMods PWA';
-installButton.className = 'top-button';
-installButton.style.margin = '10px auto';
-installButton.style.display = 'none'; // Hidden by default
-installButton.onclick = () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-                // Hide the button after installation
-                installButton.style.display = 'none';
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredPrompt = null;
-        });
-    }
-};
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        
+                        // Check for updates periodically
+                        setInterval(() => {
+                            registration.update().then(() => {
+                                console.log('Checking for service worker update');
+                            });
+                        }, 60 * 60 * 1000); // Check every hour
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
 
-// Add the button to your top-button-row
-const buttonRow = document.querySelector('.top-button-row');
-if (buttonRow) {
-    buttonRow.appendChild(installButton);
-}
+        // PWA Install Prompt Handling
+        let deferredPrompt;
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Install ClaudeMods PWA';
+        installButton.className = 'top-button';
+        installButton.style.margin = '10px auto';
+        installButton.style.display = 'none'; // Hidden by default
+        installButton.onclick = () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                        // Hide the button after installation
+                        installButton.style.display = 'none';
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        };
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-    // Stash the event so it can be triggered later
-    deferredPrompt = e;
-    
-    // Show our install button
-    installButton.style.display = 'block';
-    
-    // Optional: Log analytics event that PWA is available
-    console.log('PWA install prompt available');
-});
+        // Add the button to your top-button-row
+        const buttonRow = document.querySelector('.top-button-row');
+        if (buttonRow) {
+            buttonRow.appendChild(installButton);
+        }
 
-// Track app installed event
-window.addEventListener('appinstalled', (evt) => {
-    console.log('PWA was installed');
-    // Hide the install button
-    installButton.style.display = 'none';
-    // Optional: Log analytics event that PWA was installed
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Get all overlay and button elements
-    const showGalleryBtn = document.getElementById('show-gallery');
-    const closeGalleryBtn = document.getElementById('close-gallery');
-    const galleryOverlay = document.getElementById('gallery-overlay');
-    
-    const showCcmBtn = document.getElementById('show-ccm');
-    const closeCcmBtn = document.getElementById('close-ccm');
-    const ccmOverlay = document.getElementById('ccm-overlay');
-    
-    const showGuideBtn = document.getElementById('show-guide');
-    const closeGuideBtn = document.getElementById('close-guide');
-    const guideOverlay = document.getElementById('guide-overlay');
-    
-    const backButton = document.getElementById('back-button');
-    const body = document.body;
-    
-    // Show gallery (slides in from left)
-    showGalleryBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.add('gallery-open');
-        galleryOverlay.style.display = 'block';
-        document.documentElement.style.overflow = 'hidden';
-        backButton.style.display = 'block';
-        
-        // Pause main video
-        if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
-            mainPlayer.pauseVideo();
-        }
-        
-        // Play gallery video (audio only)
-        if (galleryPlayer && typeof galleryPlayer.playVideo === 'function') {
-            galleryPlayer.mute();
-            galleryPlayer.playVideo();
-            setTimeout(function() {
-                galleryPlayer.unMute();
-            }, 1000);
-        }
-    });
-    
-    // Close gallery (slides out to left)
-    closeGalleryBtn.addEventListener('click', function() {
-        body.classList.add('gallery-closing');
-        body.classList.remove('gallery-open');
-        
-        setTimeout(() => {
-            galleryOverlay.style.display = 'none';
-            document.documentElement.style.overflow = '';
-            backButton.style.display = 'none';
-            body.classList.remove('gallery-closing');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
             
-            // Play main video (audio only)
-            if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
-                mainPlayer.mute();
-                mainPlayer.playVideo();
-                setTimeout(function() {
-                    mainPlayer.unMute();
-                }, 1000);
-            }
+            // Show our install button
+            installButton.style.display = 'block';
             
-            // Pause gallery video
-            if (galleryPlayer && typeof galleryPlayer.pauseVideo === 'function') {
-                galleryPlayer.pauseVideo();
-            }
-        }, 500); // Match this with your CSS transition duration
-    });
-    
-    // Show CCM (pops up from middle)
-    showCcmBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.add('ccm-open');
-        ccmOverlay.style.display = 'block';
-        document.documentElement.style.overflow = 'hidden';
-        backButton.style.display = 'block';
-        
-        // Pause main video
-        if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
-            mainPlayer.pauseVideo();
-        }
-        
-        // Play CCM video (audio only)
-        if (ccmPlayer && typeof ccmPlayer.playVideo === 'function') {
-            ccmPlayer.mute();
-            ccmPlayer.playVideo();
-            setTimeout(function() {
-                ccmPlayer.unMute();
-            }, 1000);
-        }
-    });
-    
-    // Close CCM (pops back to middle)
-    closeCcmBtn.addEventListener('click', function() {
-        body.classList.add('ccm-closing');
-        body.classList.remove('ccm-open');
-        
-        setTimeout(() => {
-            ccmOverlay.style.display = 'none';
-            document.documentElement.style.overflow = '';
-            backButton.style.display = 'none';
-            body.classList.remove('ccm-closing');
-            
-            // Play main video (audio only)
-            if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
-                mainPlayer.mute();
-                mainPlayer.playVideo();
-                setTimeout(function() {
-                    mainPlayer.unMute();
-                }, 1000);
-            }
-            
-            // Pause CCM video
-            if (ccmPlayer && typeof ccmPlayer.pauseVideo === 'function') {
-                ccmPlayer.pauseVideo();
-            }
-        }, 500); // Match this with your CSS transition duration
-    });
-    
-    // Show Guide (pops up from middle)
-    showGuideBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.add('guide-open');
-        guideOverlay.style.display = 'block';
-        document.documentElement.style.overflow = 'hidden';
-        backButton.style.display = 'block';
-        
-        // Pause main video
-        if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
-            mainPlayer.pauseVideo();
-        }
-        
-        // Play guide video (audio only)
-        if (guidePlayer && typeof guidePlayer.playVideo === 'function') {
-            guidePlayer.mute();
-            guidePlayer.playVideo();
-            setTimeout(function() {
-                guidePlayer.unMute();
-            }, 1000);
-        }
-    });
-    
-    // Close Guide (pops back to middle)
-    closeGuideBtn.addEventListener('click', function() {
-        body.classList.add('guide-closing');
-        body.classList.remove('guide-open');
-        
-        setTimeout(() => {
-            guideOverlay.style.display = 'none';
-            document.documentElement.style.overflow = '';
-            backButton.style.display = 'none';
-            body.classList.remove('guide-closing');
-            
-            // Play main video (audio only)
-            if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
-                mainPlayer.mute();
-                mainPlayer.playVideo();
-                setTimeout(function() {
-                    mainPlayer.unMute();
-                }, 1000);
-            }
-            
-            // Pause guide video
-            if (guidePlayer && typeof guidePlayer.pauseVideo === 'function') {
-                guidePlayer.pauseVideo();
-            }
-        }, 500); // Match this with your CSS transition duration
-    });
-    
-    // Back button functionality
-    backButton.addEventListener('click', function() {
-        if (body.classList.contains('gallery-open')) {
-            closeGalleryBtn.click();
-        } else if (body.classList.contains('ccm-open')) {
-            closeCcmBtn.click();
-        } else if (body.classList.contains('guide-open')) {
-            closeGuideBtn.click();
-        }
-    });
-    
-    // Close gallery when clicking outside content
-    galleryOverlay.addEventListener('click', function(e) {
-        if (e.target === galleryOverlay) {
-            closeGalleryBtn.click();
-        }
-    });
-    
-    // Close CCM when clicking outside content
-    ccmOverlay.addEventListener('click', function(e) {
-        if (e.target === ccmOverlay) {
-            closeCcmBtn.click();
-        }
-    });
-    
-    // Close Guide when clicking outside content
-    guideOverlay.addEventListener('click', function(e) {
-        if (e.target === guideOverlay) {
-            closeGuideBtn.click();
-        }
-    });
-    
-    // Gallery image hover effects
-    const imageBoxes = document.querySelectorAll('.gallery-image-box');
-    
-    imageBoxes.forEach((box, index) => {
-        // Set a delay for each image box based on its position
-        box.style.transitionDelay = `${index * 0.1}s`;
-        
-        // Add mouseenter event for sequential effect
-        box.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.querySelector('img').style.transform = 'scale(1.1)';
-        });
-        
-        box.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.querySelector('img').style.transform = 'scale(1)';
-        });
-    });
-
-    // Auto-enlarge images from left to right every 3 seconds
-    let currentIndex = 0;
-    function autoEnlarge() {
-        // Reset all images
-        imageBoxes.forEach(box => {
-            box.style.transform = 'scale(1)';
-            if (box.querySelector('img')) {
-                box.querySelector('img').style.transform = 'scale(1)';
-            }
+            // Optional: Log analytics event that PWA is available
+            console.log('PWA install prompt available');
         });
 
-        // Enlarge current image
-        if (imageBoxes[currentIndex]) {
-            imageBoxes[currentIndex].style.transform = 'scale(1.05)';
-            if (imageBoxes[currentIndex].querySelector('img')) {
-                imageBoxes[currentIndex].querySelector('img').style.transform = 'scale(1.1)';
+        // Track app installed event
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA was installed');
+            // Hide the install button
+            installButton.style.display = 'none';
+            // Optional: Log analytics event that PWA was installed
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all overlay and button elements
+            const showGalleryBtn = document.getElementById('show-gallery');
+            const closeGalleryBtn = document.getElementById('close-gallery');
+            const galleryOverlay = document.getElementById('gallery-overlay');
+            
+            const showCcmBtn = document.getElementById('show-ccm');
+            const closeCcmBtn = document.getElementById('close-ccm');
+            const ccmOverlay = document.getElementById('ccm-overlay');
+            
+            const showGuideBtn = document.getElementById('show-guide');
+            const closeGuideBtn = document.getElementById('close-guide');
+            const guideOverlay = document.getElementById('guide-overlay');
+            
+            const backButton = document.getElementById('back-button');
+            const body = document.body;
+            
+            // Show gallery (slides in from left)
+            showGalleryBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.add('gallery-open');
+                galleryOverlay.style.display = 'block';
+                document.documentElement.style.overflow = 'hidden';
+                backButton.style.display = 'block';
+                
+                // Pause main video
+                if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
+                    mainPlayer.pauseVideo();
+                }
+                
+                // Play gallery video (audio only)
+                if (galleryPlayer && typeof galleryPlayer.playVideo === 'function') {
+                    galleryPlayer.mute();
+                    galleryPlayer.playVideo();
+                    setTimeout(function() {
+                        galleryPlayer.unMute();
+                    }, 1000);
+                }
+            });
+            
+            // Close gallery (slides out to left)
+            closeGalleryBtn.addEventListener('click', function() {
+                body.classList.add('gallery-closing');
+                body.classList.remove('gallery-open');
+                
+                setTimeout(() => {
+                    galleryOverlay.style.display = 'none';
+                    document.documentElement.style.overflow = '';
+                    backButton.style.display = 'none';
+                    body.classList.remove('gallery-closing');
+                    
+                    // Play main video (audio only)
+                    if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
+                        mainPlayer.mute();
+                        mainPlayer.playVideo();
+                        setTimeout(function() {
+                            mainPlayer.unMute();
+                        }, 1000);
+                    }
+                    
+                    // Pause gallery video
+                    if (galleryPlayer && typeof galleryPlayer.pauseVideo === 'function') {
+                        galleryPlayer.pauseVideo();
+                    }
+                }, 500); // Match this with your CSS transition duration
+            });
+            
+            // Show CCM (pops up from middle)
+            showCcmBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.add('ccm-open');
+                ccmOverlay.style.display = 'block';
+                document.documentElement.style.overflow = 'hidden';
+                backButton.style.display = 'block';
+                
+                // Pause main video
+                if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
+                    mainPlayer.pauseVideo();
+                }
+                
+                // Play CCM video (audio only)
+                if (ccmPlayer && typeof ccmPlayer.playVideo === 'function') {
+                    ccmPlayer.mute();
+                    ccmPlayer.playVideo();
+                    setTimeout(function() {
+                        ccmPlayer.unMute();
+                    }, 1000);
+                }
+            });
+            
+            // Close CCM (pops back to middle)
+            closeCcmBtn.addEventListener('click', function() {
+                body.classList.add('ccm-closing');
+                body.classList.remove('ccm-open');
+                
+                setTimeout(() => {
+                    ccmOverlay.style.display = 'none';
+                    document.documentElement.style.overflow = '';
+                    backButton.style.display = 'none';
+                    body.classList.remove('ccm-closing');
+                    
+                    // Play main video (audio only)
+                    if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
+                        mainPlayer.mute();
+                        mainPlayer.playVideo();
+                        setTimeout(function() {
+                            mainPlayer.unMute();
+                        }, 1000);
+                    }
+                    
+                    // Pause CCM video
+                    if (ccmPlayer && typeof ccmPlayer.pauseVideo === 'function') {
+                        ccmPlayer.pauseVideo();
+                    }
+                }, 500); // Match this with your CSS transition duration
+            });
+            
+            // Show Guide (pops up from middle)
+            showGuideBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.add('guide-open');
+                guideOverlay.style.display = 'block';
+                document.documentElement.style.overflow = 'hidden';
+                backButton.style.display = 'block';
+                
+                // Pause main video
+                if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
+                    mainPlayer.pauseVideo();
+                }
+                
+                // Play guide video (audio only)
+                if (guidePlayer && typeof guidePlayer.playVideo === 'function') {
+                    guidePlayer.mute();
+                    guidePlayer.playVideo();
+                    setTimeout(function() {
+                        guidePlayer.unMute();
+                    }, 1000);
+                }
+            });
+            
+            // Close Guide (pops back to middle)
+            closeGuideBtn.addEventListener('click', function() {
+                body.classList.add('guide-closing');
+                body.classList.remove('guide-open');
+                
+                setTimeout(() => {
+                    guideOverlay.style.display = 'none';
+                    document.documentElement.style.overflow = '';
+                    backButton.style.display = 'none';
+                    body.classList.remove('guide-closing');
+                    
+                    // Play main video (audio only)
+                    if (mainPlayer && typeof mainPlayer.playVideo === 'function') {
+                        mainPlayer.mute();
+                        mainPlayer.playVideo();
+                        setTimeout(function() {
+                            mainPlayer.unMute();
+                        }, 1000);
+                    }
+                    
+                    // Pause guide video
+                    if (guidePlayer && typeof guidePlayer.pauseVideo === 'function') {
+                        guidePlayer.pauseVideo();
+                    }
+                }, 500); // Match this with your CSS transition duration
+            });
+            
+            // Back button functionality
+            backButton.addEventListener('click', function() {
+                if (body.classList.contains('gallery-open')) {
+                    closeGalleryBtn.click();
+                } else if (body.classList.contains('ccm-open')) {
+                    closeCcmBtn.click();
+                } else if (body.classList.contains('guide-open')) {
+                    closeGuideBtn.click();
+                }
+            });
+            
+            // Close gallery when clicking outside content
+            galleryOverlay.addEventListener('click', function(e) {
+                if (e.target === galleryOverlay) {
+                    closeGalleryBtn.click();
+                }
+            });
+            
+            // Close CCM when clicking outside content
+            ccmOverlay.addEventListener('click', function(e) {
+                if (e.target === ccmOverlay) {
+                    closeCcmBtn.click();
+                }
+            });
+            
+            // Close Guide when clicking outside content
+            guideOverlay.addEventListener('click', function(e) {
+                if (e.target === guideOverlay) {
+                    closeGuideBtn.click();
+                }
+            });
+            
+            // Gallery image hover effects
+            const imageBoxes = document.querySelectorAll('.gallery-image-box');
+            
+            imageBoxes.forEach((box, index) => {
+                // Set a delay for each image box based on its position
+                box.style.transitionDelay = `${index * 0.1}s`;
+                
+                // Add mouseenter event for sequential effect
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.querySelector('img').style.transform = 'scale(1.1)';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.querySelector('img').style.transform = 'scale(1)';
+                });
+            });
+
+            // Auto-enlarge images from left to right every 3 seconds
+            let currentIndex = 0;
+            function autoEnlarge() {
+                // Reset all images
+                imageBoxes.forEach(box => {
+                    box.style.transform = 'scale(1)';
+                    if (box.querySelector('img')) {
+                        box.querySelector('img').style.transform = 'scale(1)';
+                    }
+                });
+
+                // Enlarge current image
+                if (imageBoxes[currentIndex]) {
+                    imageBoxes[currentIndex].style.transform = 'scale(1.05)';
+                    if (imageBoxes[currentIndex].querySelector('img')) {
+                        imageBoxes[currentIndex].querySelector('img').style.transform = 'scale(1.1)';
+                    }
+                }
+
+                // Move to next image
+                currentIndex = (currentIndex + 1) % imageBoxes.length;
+                
+                // Repeat every 3 seconds
+                setTimeout(autoEnlarge, 3000);
             }
-        }
 
-        // Move to next image
-        currentIndex = (currentIndex + 1) % imageBoxes.length;
-        
-        // Repeat every 3 seconds
-        setTimeout(autoEnlarge, 3000);
-    }
-
-    // Start the auto-enlarge effect after initial animations complete
-    setTimeout(autoEnlarge, 5000);
-    
-    // Check if the app is running as a PWA
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log('Running as PWA');
-        // You can add PWA-specific behavior here
-        installButton.style.display = 'none'; // Hide install button if already installed
-    }
-});
+            // Start the auto-enlarge effect after initial animations complete
+            setTimeout(autoEnlarge, 5000);
+            
+            // Check if the app is running as a PWA
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Running as PWA');
+                // You can add PWA-specific behavior here
+                installButton.style.display = 'none'; // Hide install button if already installed
+            }
+        });
     </script>
 </body>
 </html>
