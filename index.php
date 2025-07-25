@@ -1,8 +1,9 @@
 <?php
 /** Copyright (c) 2023-2025 claudemods
- * claudemods website v3.01 21-07-2025
+ * claudemods website v3.01.1 25-07-2025
  * pwa support added but not working
  * new copyright notice
+ - 25-07-2025 added new news button
  * oi you cheeky bugger *wink *wink feel free to gather ideas its what its for ha 
  */
 
@@ -742,6 +743,9 @@ $author = "Aaron Douglas D'souza";
     
     <div class="container">
         <div class="top-button-row">
+                        <button class="support-button" onclick="window.open('https://claudemodsreloaded.com/claudemodsnews.php', '_blank')">
+                claudemods news
+            </button>
             <a href="#" class="top-button" id="show-gallery">Distributions</a>
             <a href="#" class="top-button" id="show-guide">Guide to Linux</a>
             <a href="#" class="top-button" id="show-ccm">ClaudeModsCCM</a>
