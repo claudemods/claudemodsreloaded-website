@@ -1,11 +1,13 @@
 <?php
+# v1.0 25-07-2025
+# ui updated everything pretty is perfect for now
 date_default_timezone_set('Europe/London');
 
 $news_items = [
     [
         'title' => 'claudemods Distribution News',
         'content' => 'No new updates available at this time. Current available builds can be found at: 
-        <a href="https://drive.google.com/drive/folders/1PsEbYVgRC8RP8SX7nfJle6CM4OjeK9HJ" target="_blank" style="color: #88ffff;">Google Drive Download Link</a>',
+        <a href="https://drive.google.com/drive/folders/1PsEbYVgRC8RP8SX7nfJle6CM4OjeK9HJ" target="_blank" style="color: #00ffff;">Google Drive Download Link</a>',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
         'category' => 'distro'
@@ -21,7 +23,7 @@ $news_items = [
         'category' => 'website'
     ],
     [
-        'title' => 'Apex Arch/Cachyos Distributions',
+        'title' => 'Apex Arch/CachyOS',
         'content' => 'Current builds:
         - Apex KLGE Minimal v1.0 (17-03-2025)
         - Apex Gamester v1.0 (11-02-2025)
@@ -32,34 +34,15 @@ $news_items = [
         'category' => 'distro'
     ],
     [
-        'title' => 'Spitfire Arch/Cachyos Distributions',
-        'content' => 'Current builds:
-        - Spitfire CKGE Minimal v1.0 (02-06-2025)
-        - Spitfire CKGBE Minimal v1.0 (02-06-2025)
-        - Spitfire CKHE Minimal v1.01 (13-06-2025)
-        
-        Spitfire Alpine Distributions:
-        - Spitfire AKGE Minimal v1.0 (11-07-2025)',
+        'title' => 'Spitfire Arch/CachyOS',
+        'content' => 'Current builds:<br>- Spitfire CKGE Minimal v1.0 (02-06-2025)<br>- Spitfire CKGBE Minimal v1.0 (02-06-2025)<br>- Spitfire CKHE Minimal v1.01 (13-06-2025)<br><br>Spitfire Alpine:<br>- Spitfire AKGE Minimal v1.0 (11-07-2025)',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
         'category' => 'distro'
     ],
     [
-        'title' => 'Script and Application News',
-        'content' => 'claudemods Advanced C++ Arch Img Iso Script Beta v2.01 released (' . date('d-m-Y') . ')
-        
-        New fixes released for .img and a new menu option called "Update Script". This brings the menu options to:
-        <ul>
-            <li>Guide</li>
-            <li>Setup Scripts</li>
-            <li>Create Image</li>
-            <li>Create ISO</li>
-            <li>Show Disk Usage</li>
-            <li>Install ISO to USB</li>
-            <li>CMI BTRFS/EXT4 Installer</li>
-            <li>Update Script</li>
-            <li>Exit</li>
-        </ul>',
+        'title' => 'Scripts & Apps',
+        'content' => 'claudemods C++ Arch Img/Iso Script Beta v2.01 released (' . date('d-m-Y') . ')<br><br>New fixes for .img and new "Update Script" option. Menu:<br><ul><li>Guide</li><li>Setup Scripts</li><li>Create Image</li><li>Create ISO</li><li>Show Disk Usage</li><li>Install ISO to USB</li><li>CMI BTRFS/EXT4 Installer</li><li>Update Script</li><li>Exit</li></ul>',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
         'category' => 'scripts'
@@ -81,11 +64,12 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         :root {
             --primary-color: #0066cc;
             --secondary-color: #00ffff;
-            --accent-color: #88ffff;
-            --text-color: #e0f7ff;
+            --accent-color: #00ffff;
+            --text-color: #00ffff;
             --dark-bg: rgba(0, 20, 40, 0.8);
             --card-bg: rgba(0, 40, 80, 0.5);
-            --highlight: rgba(0, 255, 255, 0.1);
+            --highlight: rgba(0, 255, 255, 0.2);
+            --highlight-text: #00ffff;
         }
         
         * {
@@ -181,7 +165,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         
         .category-list a:hover, .category-list a.active {
             background: var(--highlight);
-            color: white;
+            color: var(--highlight-text);
             transform: translateX(5px);
         }
         
@@ -227,7 +211,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             color: var(--accent-color);
             margin-bottom: 10px;
             padding-bottom: 8px;
-            border-bottom: 1px dashed rgba(136, 255, 255, 0.3);
+            border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
         }
         
         .news-content {
@@ -278,11 +262,38 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             font-size: 0.9em;
         }
         
-        .news-item:nth-child(1) { animation-delay: 0.4s; }
-        .news-item:nth-child(2) { animation-delay: 0.6s; }
-        .news-item:nth-child(3) { animation-delay: 0.8s; }
-        .news-item:nth-child(4) { animation-delay: 1.0s; }
-        .news-item:nth-child(5) { animation-delay: 1.2s; }
+        /* Adjusted animation delays for the news items to make bottom two smaller */
+        .news-item:nth-child(1) { 
+            animation-delay: 0.4s; 
+            grid-column: span 1;
+        }
+        .news-item:nth-child(2) { 
+            animation-delay: 0.6s; 
+            grid-column: span 1;
+        }
+        .news-item:nth-child(3) { 
+            animation-delay: 0.8s; 
+            grid-column: span 1;
+        }
+        .news-item:nth-child(4) { 
+            animation-delay: 1.0s; 
+            grid-column: span 1;
+        }
+        .news-item:nth-child(5) { 
+            animation-delay: 1.2s; 
+            grid-column: span 1;
+        }
+        
+        /* Make all news items equal size */
+        .news-item {
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-content {
+            flex-grow: 1;
+        }
         
         @media (max-width: 768px) {
             .layout {
@@ -291,6 +302,10 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             
             .news-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .news-item {
+                min-height: auto;
             }
         }
     </style>
