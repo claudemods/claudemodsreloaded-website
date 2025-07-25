@@ -1,6 +1,7 @@
 <?php
 # v1.0 25-07-2025
-# ui updated everything pretty is perfect for now
+# ui created its cool
+# img arch iso creator is working now 
 date_default_timezone_set('Europe/London');
 
 $news_items = [
@@ -42,7 +43,7 @@ $news_items = [
     ],
     [
         'title' => 'Scripts & Apps',
-        'content' => 'claudemods C++ Arch Img/Iso Script Beta v2.01 released (' . date('d-m-Y') . ')<br><br>New fixes for .img and new "Update Script" option. Menu:<br><ul><li>Guide</li><li>Setup Scripts</li><li>Create Image</li><li>Create ISO</li><li>Show Disk Usage</li><li>Install ISO to USB</li><li>CMI BTRFS/EXT4 Installer</li><li>Update Script</li><li>Exit</li></ul>',
+        'content' => 'claudemods C++ Arch Img/Iso Script Beta v2.01 released (' . date('d-m-Y') . ')<br><br>New fixes for .img and new "Update Script" Option It Now Works. Menu:<br><ul><li>Guide</li><li>Setup Scripts</li><li>Create Image</li><li>Create ISO</li><li>Show Disk Usage</li><li>Install ISO to USB</li><li>CMI BTRFS/EXT4 Installer</li><li>Update Script</li><li>Exit</li></ul>',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
         'category' => 'scripts'
