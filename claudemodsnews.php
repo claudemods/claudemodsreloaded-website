@@ -1,8 +1,8 @@
 <?php
 # v1.01 26-07-2025
 # ui created its cool
-# img arch iso creator is working now
-# added youtube audio player
+# img arch iso creator is working now 
+# added youtube background audio
 date_default_timezone_set('Europe/London');
 
 $news_items = [
@@ -264,27 +264,12 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             font-size: 0.9em;
         }
         
-        /* Adjusted animation delays for the news items to make bottom two smaller */
-        .news-item:nth-child(1) { 
-            animation-delay: 0.4s; 
-            grid-column: span 1;
-        }
-        .news-item:nth-child(2) { 
-            animation-delay: 0.6s; 
-            grid-column: span 1;
-        }
-        .news-item:nth-child(3) { 
-            animation-delay: 0.8s; 
-            grid-column: span 1;
-        }
-        .news-item:nth-child(4) { 
-            animation-delay: 1.0s; 
-            grid-column: span 1;
-        }
-        .news-item:nth-child(5) { 
-            animation-delay: 1.2s; 
-            grid-column: span 1;
-        }
+        /* Adjusted animation delays for the news items */
+        .news-item:nth-child(1) { animation-delay: 0.4s; }
+        .news-item:nth-child(2) { animation-delay: 0.6s; }
+        .news-item:nth-child(3) { animation-delay: 0.8s; }
+        .news-item:nth-child(4) { animation-delay: 1.0s; }
+        .news-item:nth-child(5) { animation-delay: 1.2s; }
         
         /* Make all news items equal size */
         .news-item {
@@ -297,55 +282,12 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             flex-grow: 1;
         }
         
-        /* Audio player controls */
-        .audio-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--dark-bg);
-            padding: 10px;
-            border-radius: 50px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .audio-controls button {
-            background: none;
-            border: none;
-            color: var(--accent-color);
-            font-size: 1.2em;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .audio-controls button:hover {
-            background: rgba(0, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-        
-        .volume-control {
-            width: 100px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .volume-control input {
-            width: 100%;
-            cursor: pointer;
-        }
-        
         /* Hidden YouTube player */
         #youtube-player {
-            display: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
         }
         
         @media (max-width: 768px) {
@@ -360,26 +302,12 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             .news-item {
                 min-height: auto;
             }
-            
-            .audio-controls {
-                bottom: 10px;
-                right: 10px;
-                padding: 8px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Hidden YouTube Player -->
+    <!-- Hidden YouTube Player (audio only) -->
     <div id="youtube-player"></div>
-    
-    <!-- Audio Controls -->
-    <div class="audio-controls">
-        <button id="play-pause-btn"><i class="fas fa-play"></i></button>
-        <div class="volume-control">
-            <input type="range" id="volume-slider" min="0" max="100" value="50">
-        </div>
-    </div>
 
     <div class="container">
         <header>
@@ -446,7 +374,6 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
-        var isPlaying = false;
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
@@ -454,7 +381,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
                 width: '0',
                 videoId: 'QbfEHgzNyN4',
                 playerVars: {
-                    'autoplay': 0,
+                    'autoplay': 1,
                     'controls': 0,
                     'disablekb': 1,
                     'fs': 0,
@@ -474,48 +401,19 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         }
 
         function onPlayerReady(event) {
-            // Set initial volume
-            event.target.setVolume(50);
-            
             // Mute initially to avoid autoplay restrictions
             event.target.mute();
+            event.target.playVideo();
             
-            // Update the UI
-            updatePlayPauseButton();
+            // Unmute after a short delay
+            setTimeout(function() {
+                event.target.unMute();
+            }, 1000);
         }
 
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.ENDED) {
                 event.target.playVideo();
-            }
-            updatePlayPauseButton();
-        }
-
-        function togglePlayPause() {
-            if (player) {
-                if (isPlaying) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                    // Unmute when user initiates play
-                    player.unMute();
-                }
-                isPlaying = !isPlaying;
-                updatePlayPauseButton();
-            }
-        }
-
-        function updatePlayPauseButton() {
-            const btn = document.getElementById('play-pause-btn');
-            if (btn) {
-                btn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-            }
-        }
-
-        function setVolume() {
-            const volume = document.getElementById('volume-slider').value;
-            if (player) {
-                player.setVolume(volume);
             }
         }
 
@@ -527,10 +425,6 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
                     setTimeout(() => { this.style.transform = '' }, 200);
                 });
             });
-            
-            // Setup audio controls
-            document.getElementById('play-pause-btn').addEventListener('click', togglePlayPause);
-            document.getElementById('volume-slider').addEventListener('input', setVolume);
             
             // Animate elements as they come into view
             const animateOnScroll = () => {
