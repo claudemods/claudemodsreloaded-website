@@ -73,9 +73,19 @@ $arch_description = "for Arch systems only";
             font-weight: bold;
             margin: 10px;
         }
+        /* Hidden YouTube player */
+        #youtube-player {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
+    <!-- Hidden YouTube Player (audio only) -->
+    <div id="youtube-player"></div>
+
     <div class="container py-4">
         <!-- Animated Header -->
         <div class="text-center mb-4 animate__animated animate__fadeIn">
@@ -196,6 +206,59 @@ $arch_description = "for Arch systems only";
             </div>
         </div>
     </div>
+
+    <!-- YouTube API Script -->
+    <script>
+        // YouTube API Script
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'jSgxYu8kESU',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Mute initially to avoid autoplay restrictions
+            event.target.mute();
+            event.target.playVideo();
+            
+            // Unmute after a short delay
+            setTimeout(function() {
+                event.target.unMute();
+            }, 1000);
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                event.target.playVideo();
+            }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
