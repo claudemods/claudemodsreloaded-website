@@ -1,7 +1,8 @@
 <?php
-# v1.0 25-07-2025
+# v1.01 26-07-2025
 # ui created its cool
-# img arch iso creator is working now 
+# img arch iso creator is working now
+# added youtube audio player
 date_default_timezone_set('Europe/London');
 
 $news_items = [
@@ -296,6 +297,57 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             flex-grow: 1;
         }
         
+        /* Audio player controls */
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-bg);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audio-controls button {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-controls button:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .volume-control {
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .volume-control input {
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        /* Hidden YouTube player */
+        #youtube-player {
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .layout {
                 grid-template-columns: 1fr;
@@ -308,10 +360,27 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             .news-item {
                 min-height: auto;
             }
+            
+            .audio-controls {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Hidden YouTube Player -->
+    <div id="youtube-player"></div>
+    
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button id="play-pause-btn"><i class="fas fa-play"></i></button>
+        <div class="volume-control">
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <h1><i class="fas fa-newspaper"></i> claudemods News Portal</h1>
@@ -368,7 +437,88 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         </footer>
     </div>
     
+    <!-- YouTube API Script -->
     <script>
+        // YouTube API Script
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'QbfEHgzNyN4',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'loop': 1,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'iv_load_policy': 3,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Set initial volume
+            event.target.setVolume(50);
+            
+            // Mute initially to avoid autoplay restrictions
+            event.target.mute();
+            
+            // Update the UI
+            updatePlayPauseButton();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                event.target.playVideo();
+            }
+            updatePlayPauseButton();
+        }
+
+        function togglePlayPause() {
+            if (player) {
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                    // Unmute when user initiates play
+                    player.unMute();
+                }
+                isPlaying = !isPlaying;
+                updatePlayPauseButton();
+            }
+        }
+
+        function updatePlayPauseButton() {
+            const btn = document.getElementById('play-pause-btn');
+            if (btn) {
+                btn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            }
+        }
+
+        function setVolume() {
+            const volume = document.getElementById('volume-slider').value;
+            if (player) {
+                player.setVolume(volume);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Add click effect to news items
             document.querySelectorAll('.news-item').forEach(item => {
@@ -377,6 +527,10 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
                     setTimeout(() => { this.style.transform = '' }, 200);
                 });
             });
+            
+            // Setup audio controls
+            document.getElementById('play-pause-btn').addEventListener('click', togglePlayPause);
+            document.getElementById('volume-slider').addEventListener('input', setVolume);
             
             // Animate elements as they come into view
             const animateOnScroll = () => {
