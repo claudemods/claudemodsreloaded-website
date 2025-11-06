@@ -6,10 +6,9 @@
 
 <div align="center">
 
-### www.claudemodsreloaded.com 
-offline but outdated
-### www.claudemodsreloaded.page.gd 
-online but outdated 🚀
+### www.claudemodsreloaded.co.uk
+online but outdated
+
 
 
 currently old website is down i intend to pay the balance but may keep to 
