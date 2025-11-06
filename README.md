@@ -9,12 +9,6 @@
 ### www.claudemodsreloaded.co.uk
 online but outdated
 
-
-
-currently old website is down i intend to pay the balance but may keep to 
-
-www.claudemodsreloaded.page.gd
-
 <div align="center">
   <a href="https://www.deepseek.com/" target="_blank">
     <img alt="Homepage" src="https://i.postimg.cc/Hs2vbbZ8/Deep-Seek-Homepage.png" style="height: 30px; width: auto;">
