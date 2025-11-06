@@ -846,7 +846,7 @@ $author = "Aaron Douglas D'souza";
     
     <div class="container">
         <div class="top-button-row">
-            <button class="support-button" onclick="window.open('https://claudemodsreloaded.com/claudemodsnews.php', '_blank')">
+            <button class="support-button" onclick="window.open('claudemodsnews.php', '_blank')">
                 claudemods news
             </button>
             <a href="#" class="top-button" id="show-gallery">Distributions</a>
@@ -871,7 +871,7 @@ $author = "Aaron Douglas D'souza";
             </div>
             
             <div class="badge-row">
-                <a href="https://www.claudemodsreloaded.com" target="_blank" class="badge badge-gold">claudemods website v3.01.2</a>
+                <a href="https://www.claudemodsreloaded.co.uk" target="_blank" class="badge badge-gold">claudemods website v3.01.2</a>
                 <a href="https://www.gtainside.com/user/mapmods100" target="_blank" class="badge badge-gold">gta inside v1.5</a>
                 <a href="https://drive.google.com/drive/folders/1MH0CHGvwdDzGSXpjgfBqvfty_asq6cqf" target="_blank" class="badge badge-gold">Google Drive v2.0</a>
                 <a href="https://sourceforge.net/projects/claudemods/" target="_blank" class="badge badge-gold">Sourceforge v2.0</a>
@@ -898,16 +898,16 @@ $author = "Aaron Douglas D'souza";
             </div>
             
             <div id="v1-repo-options" class="repo-options">
-                <a href="https://www.claudemodsreloaded.com/v1-kernels-tested" target="_blank" class="repo-option">v1-kernels-tested</a>
-                <a href="https://www.claudemodsreloaded.com/v1-base" target="_blank" class="repo-option">v1-base</a>
-                <a href="https://www.claudemodsreloaded.com/v1-core" target="_blank" class="repo-option">v1-core</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v1-kernels-tested" target="_blank" class="repo-option">v1-kernels-tested</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v1-base" target="_blank" class="repo-option">v1-base</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v1-core" target="_blank" class="repo-option">v1-core</a>
             </div>
             
             <div id="v2-repo-options" class="repo-options">
-                <a href="https://www.claudemodsreloaded.com/v2-kernels-rolling" target="_blank" class="repo-option">v2-kernels-rolling</a>
-                <a href="https://www.claudemodsreloaded.com/v2-base" target="_blank" class="repo-option">v2-base</a>
-                <a href="https://www.claudemodsreloaded.com/v2-core" target="_blank" class="repo-option">v2-core</a>
-                <a href="https://www.claudemodsreloaded.com/v2-desktop" target="_blank" class="repo-option">v2-desktop</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v2-kernels-rolling" target="_blank" class="repo-option">v2-kernels-rolling</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v2-base" target="_blank" class="repo-option">v2-base</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v2-core" target="_blank" class="repo-option">v2-core</a>
+                <a href="https://www.claudemodsreloaded.co.uk/v2-desktop" target="_blank" class="repo-option">v2-desktop</a>
             </div>
         </div>
         
