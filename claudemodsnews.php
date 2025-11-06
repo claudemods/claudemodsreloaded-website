@@ -15,9 +15,9 @@ $news_items = [
         'category' => 'distro'
     ],
     [
-        'title' => 'claudemods website v3.01.1',
+        'title' => 'claudemods website v3.01.2',
         'content' => 'Latest changes:
-        - New claudemods news button (25-03-2025)
+        - New claudemods news button (06-11-2025)
         - Improved responsive design
         - Enhanced security features',
         'date' => date('d-m-Y'),
@@ -29,7 +29,7 @@ $news_items = [
         'content' => 'Current builds:
         - Apex KLGE Minimal v1.0 (17-03-2025)
         - Apex Gamester v1.0 (11-02-2025)
-        - Apex CKGE Full v1.04.2 (31-05-2025)
+        - Apex CKGE Full v1.04.3 (01-10-2025)
         - Apex CKHE Full v1.02 (05-06-2025)',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
@@ -37,7 +37,7 @@ $news_items = [
     ],
     [
         'title' => 'Spitfire Arch/CachyOS',
-        'content' => 'Current builds:<br>- Spitfire CKGE Minimal v1.0 (02-06-2025)<br>- Spitfire CKGBE Minimal v1.0 (02-06-2025)<br>- Spitfire CKHE Minimal v1.01 (13-06-2025)<br><br>Spitfire Alpine:<br>- Spitfire AKGE Minimal v1.0 (11-07-2025)',
+        'content' => 'Current builds:<br>- Spitfire CKGE Minimal v1.03 (02-10-2025)<br>- <br>- Spitfire CKGE Minimal Dev v1.02.1 (04-10-2025)<br> Spitfire CKGBE Minimal v1.0 (02-06-2025)<br>- Spitfire CKHE Minimal v1.01 (13-06-2025)<br><br>Spitfire Alpine:<br>- Spitfire AKGE Minimal v1.0 (11-07-2025)',
         'date' => date('d-m-Y'),
         'author' => 'claudemods',
         'category' => 'distro'
