@@ -891,36 +891,6 @@ $author = "Aaron Douglas D'souza";
             </div>
         </div>
         
-        <div class="repo-section">
-            <div class="repo-buttons-container">
-                <button class="repo-button" onclick="toggleRepo('v1')">V1 Repo</button>
-                <button class="repo-button" onclick="toggleRepo('v2')">V2 Repo</button>
-            </div>
-            
-            <div id="v1-repo-options" class="repo-options">
-                <a href="https://www.claudemodsreloaded.co.uk/v1-kernels-tested" target="_blank" class="repo-option">v1-kernels-tested</a>
-                <a href="https://www.claudemodsreloaded.co.uk/v1-base" target="_blank" class="repo-option">v1-base</a>
-                <a href="https://www.claudemodsreloaded.co.uk/v1-core" target="_blank" class="repo-option">v1-core</a>
-            </div>
-            
-            <div id="v2-repo-options" class="repo-options">
-                <a href="https://www.claudemodsreloaded.co.uk/v2-kernels-rolling" target="_blank" class="repo-option">v2-kernels-rolling</a>
-                <a href="https://www.claudemodsreloaded.co.uk/v2-base" target="_blank" class="repo-option">v2-base</a>
-                <a href="https://www.claudemodsreloaded.co.uk/v2-core" target="_blank" class="repo-option">v2-core</a>
-                <a href="https://www.claudemodsreloaded.co.uk/v2-desktop" target="_blank" class="repo-option">v2-desktop</a>
-            </div>
-        </div>
-        
-        <div class="copy-section">
-            <div class="copy-buttons-container">
-                <button class="repo-button" onclick="copyRepoConfig('v1')">Copy V1 Repo Config</button>
-                <button class="repo-button" onclick="copyRepoConfig('v2')">Copy V2 Repo Config</button>
-            </div>
-            <div id="copy-notification" class="copy-notification">
-                Configuration copied to clipboard!
-            </div>
-        </div>
-        
         <!-- Footer added here -->
         <div class="footer">
             Copyright (c) 2023-2025 claudemods
@@ -1706,48 +1676,6 @@ create arch bootable usb
                     event.target.playVideo();
                 }
             }
-        }
-
-        function toggleRepo(version) {
-            document.getElementById('v1-repo-options').style.display = 'none';
-            document.getElementById('v2-repo-options').style.display = 'none';
-            document.getElementById(version + '-repo-options').style.display = 'block';
-        }
-
-        function copyRepoConfig(version) {
-            let configText = version === 'v1' ? 
-                `[claudemods-v1-kernels-tested]
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v1-kernels-tested
-
-[claudemods-v1-core]
-SigLevel = Never
-Server = https://github.com/claudemods/claudemods-v1/releases/download/v1-core/
-
-[claudemods-v1-base]
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v1-base-final/` :
-                `[claudemods-v2-kernels-rolling] 🚀
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v2-kernels-rolling/  
-
-[claudemods-v2-base] 🚀
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v2-base/  
-
-[claudemods-v2-core] 🚀
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v2-core/  
-
-[claudemods-v2-desktop] 🚀
-SigLevel = Never
-Server = https://claudemodsreloaded.com/v2-desktop/`;
-            
-            navigator.clipboard.writeText(configText).then(() => {
-                const notification = document.getElementById('copy-notification');
-                notification.style.display = 'block';
-                setTimeout(() => notification.style.display = 'none', 2000);
-            });
         }
 
         // PWA Service Worker Registration
