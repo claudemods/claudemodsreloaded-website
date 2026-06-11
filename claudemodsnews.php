@@ -1,58 +1,9 @@
 <?php
-# v1.01 26-07-2025
-# ui created its cool
-# img arch iso creator is working now 
-# added youtube background audio
+# v1.02 11-06-2026
+# ui updated - simplified to focus on current projects
+# kept youtube background audio
+# removed news categories, now showing current focus and distributions only
 date_default_timezone_set('Europe/London');
-
-$news_items = [
-    [
-        'title' => 'claudemods Distribution News',
-        'content' => 'No new updates available at this time. Current available builds can be found at: 
-        <a href="https://drive.google.com/drive/folders/1PsEbYVgRC8RP8SX7nfJle6CM4OjeK9HJ" target="_blank" style="color: #00ffff;">Google Drive Download Link</a>',
-        'date' => date('d-m-Y'),
-        'author' => 'claudemods',
-        'category' => 'distro'
-    ],
-    [
-        'title' => 'claudemods website v3.01.2',
-        'content' => 'Latest changes:
-        - New claudemods news button (06-11-2025)
-        - Improved responsive design
-        - Enhanced security features',
-        'date' => date('d-m-Y'),
-        'author' => 'claudemods',
-        'category' => 'website'
-    ],
-    [
-        'title' => 'Apex Arch/CachyOS',
-        'content' => 'Current builds:
-        - Apex KLGE Minimal v1.0 (17-03-2025)
-        - Apex Gamester v1.0 (11-02-2025)
-        - Apex CKGE Full v1.04.3 (01-10-2025)
-        - Apex CKHE Full v1.02 (05-06-2025)',
-        'date' => date('d-m-Y'),
-        'author' => 'claudemods',
-        'category' => 'distro'
-    ],
-    [
-        'title' => 'Spitfire Arch/CachyOS',
-        'content' => 'Current builds:<br>- Spitfire CKGE Minimal v1.03 (02-10-2025)<br>- <br>- Spitfire CKGE Minimal Dev v1.02.1 (04-10-2025)<br> Spitfire CKGBE Minimal v1.0 (02-06-2025)<br>- Spitfire CKHE Minimal v1.01 (13-06-2025)<br><br>Spitfire Alpine:<br>- Spitfire AKGE Minimal v1.0 (11-07-2025)',
-        'date' => date('d-m-Y'),
-        'author' => 'claudemods',
-        'category' => 'distro'
-    ],
-    [
-        'title' => 'Scripts & Apps',
-        'content' => 'claudemods C++ Arch Img/Iso Script Beta v2.01 released (' . date('d-m-Y') . ')<br><br>New fixes for .img and new "Update Script" Option It Now Works. Menu:<br><ul><li>Guide</li><li>Setup Scripts</li><li>Create Image</li><li>Create ISO</li><li>Show Disk Usage</li><li>Install ISO to USB</li><li>CMI BTRFS/EXT4 Installer</li><li>Update Script</li><li>Exit</li></ul>',
-        'date' => date('d-m-Y'),
-        'author' => 'claudemods',
-        'category' => 'scripts'
-    ]
-];
-
-// Get current category from URL or default to 'all'
-$current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +11,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>claudemods News Portal</title>
+    <title>claudemods - Current Projects</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -72,6 +23,8 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             --card-bg: rgba(0, 40, 80, 0.5);
             --highlight: rgba(0, 255, 255, 0.2);
             --highlight-text: #00ffff;
+            --spitfire-color: #ff4444;
+            --apex-color: #9945FF;
         }
         
         * {
@@ -89,7 +42,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             opacity: 0;
@@ -124,112 +77,157 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             opacity: 0.9;
         }
         
-        .layout {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .sidebar {
-            background: var(--dark-bg);
-            border-radius: 10px;
-            padding: 15px;
-            height: fit-content;
+        .content-section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--secondary-color);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        .sidebar h3 {
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.5s; }
+        .content-section:nth-child(4) { animation-delay: 0.7s; }
+        .content-section:nth-child(5) { animation-delay: 0.9s; }
+        
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 50, 100, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .content-section h2 {
             color: var(--secondary-color);
-            margin-bottom: 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section h2 i {
             font-size: 1.1em;
         }
         
-        .category-list {
-            list-style: none;
+        .notice-box {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.1s forwards;
         }
         
-        .category-list li {
+        .notice-box p {
             margin-bottom: 8px;
         }
         
-        .category-list a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
-            padding: 6px 8px;
-            border-radius: 5px;
-            font-size: 0.9em;
+        .notice-box a {
+            color: #ffffff;
+            font-weight: bold;
         }
         
-        .category-list a:hover, .category-list a.active {
-            background: var(--highlight);
-            color: var(--highlight-text);
-            transform: translateX(5px);
-        }
-        
-        .category-list i {
-            margin-right: 8px;
-            width: 16px;
-            text-align: center;
-        }
-        
-        .news-grid {
+        .distro-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
         }
         
-        .news-item {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 0.8s ease-out forwards;
-            border-left: 3px solid var(--secondary-color);
+        .distro-card {
+            background: rgba(0, 30, 60, 0.7);
+            border-radius: 6px;
+            padding: 12px;
+            border-left: 2px solid var(--secondary-color);
+            transition: transform 0.2s ease;
         }
         
-        .news-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            background: rgba(0, 50, 100, 0.6);
+        .distro-card:hover {
+            transform: translateX(5px);
+            background: rgba(0, 50, 100, 0.7);
         }
         
-        .news-item h2 {
-            color: var(--secondary-color);
-            margin-top: 0;
+        .distro-card.spitfire {
+            border-left-color: var(--spitfire-color);
+        }
+        
+        .distro-card.apex {
+            border-left-color: var(--apex-color);
+        }
+        
+        .series-header {
+            font-weight: bold;
             margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8em;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            padding-bottom: 8px;
+            font-size: 1.1em;
+            padding-bottom: 5px;
             border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
         }
         
-        .news-content {
-            white-space: pre-line;
-            margin-bottom: 10px;
-            font-size: 0.9em;
+        .series-header.spitfire {
+            color: var(--spitfire-color);
         }
         
-        .news-content ul, .news-content ol {
-            padding-left: 18px;
-            margin: 8px 0;
-            font-size: 0.9em;
+        .series-header.apex {
+            color: var(--apex-color);
         }
         
-        .news-content li {
+        .app-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .app-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(0, 30, 60, 0.7);
+            border-radius: 6px;
+            border-left: 2px solid var(--secondary-color);
+            transition: transform 0.2s ease;
+        }
+        
+        .app-list li:hover {
+            transform: translateX(5px);
+            background: rgba(0, 50, 100, 0.7);
+        }
+        
+        .app-list li.windows {
+            border-left-color: #00a4ef;
+        }
+        
+        .app-list li.linux {
+            border-left-color: #fcc624;
+        }
+        
+        .app-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+        
+        .app-list a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .app-name {
+            font-weight: bold;
+            display: block;
             margin-bottom: 4px;
+        }
+        
+        .app-version {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+        
+        .app-link {
+            display: block;
+            margin-top: 4px;
         }
         
         a {
@@ -243,16 +241,6 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             text-decoration: underline;
         }
         
-        .news-category {
-            display: inline-block;
-            background: rgba(0, 255, 255, 0.2);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            margin-top: 8px;
-            color: var(--accent-color);
-        }
-        
         footer {
             text-align: center;
             padding: 20px 0;
@@ -264,25 +252,6 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             font-size: 0.9em;
         }
         
-        /* Adjusted animation delays for the news items */
-        .news-item:nth-child(1) { animation-delay: 0.4s; }
-        .news-item:nth-child(2) { animation-delay: 0.6s; }
-        .news-item:nth-child(3) { animation-delay: 0.8s; }
-        .news-item:nth-child(4) { animation-delay: 1.0s; }
-        .news-item:nth-child(5) { animation-delay: 1.2s; }
-        
-        /* Make all news items equal size */
-        .news-item {
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .news-content {
-            flex-grow: 1;
-        }
-        
-        /* Hidden YouTube player */
         #youtube-player {
             position: absolute;
             width: 0;
@@ -291,16 +260,16 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         }
         
         @media (max-width: 768px) {
-            .layout {
+            .distro-grid {
                 grid-template-columns: 1fr;
             }
             
-            .news-grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 10px;
             }
             
-            .news-item {
-                min-height: auto;
+            h1 {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -311,52 +280,100 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
 
     <div class="container">
         <header>
-            <h1><i class="fas fa-newspaper"></i> claudemods News Portal</h1>
-            <p class="subtitle">Latest updates as of <?= date('d-m-Y H:i:s') ?> (UK Time)</p>
+            <h1><i class="fas fa-cog"></i> claudemods</h1>
+            <p class="subtitle">Current Projects & Updates - <?= date('d-m-Y H:i:s') ?> (UK Time)</p>
         </header>
         
-        <div class="layout">
-            <aside class="sidebar">
-                <h3><i class="fas fa-filter"></i> Categories</h3>
-                <ul class="category-list">
-                    <li><a href="?category=all" class="<?= $current_category === 'all' ? 'active' : '' ?>"><i class="fas fa-star"></i> All News</a></li>
-                    <li><a href="?category=distro" class="<?= $current_category === 'distro' ? 'active' : '' ?>"><i class="fas fa-linux"></i> Distributions</a></li>
-                    <li><a href="?category=scripts" class="<?= $current_category === 'scripts' ? 'active' : '' ?>"><i class="fas fa-code"></i> Scripts</a></li>
-                    <li><a href="?category=website" class="<?= $current_category === 'website' ? 'active' : '' ?>"><i class="fas fa-globe"></i> Website</a></li>
-                </ul>
-                
-                <h3 style="margin-top: 20px;"><i class="fas fa-info-circle"></i> About</h3>
-                <p style="font-size: 0.85em; line-height: 1.4;">
-                    claudemods provides custom Linux distributions and development tools for advanced users.
-                </p>
-            </aside>
+        <!-- Notice Section -->
+        <div class="notice-box">
+            <p><i class="fas fa-info-circle"></i> <strong>Important Notice:</strong></p>
+            <p>A lot of things have been changed recently. Not many updates have been done to the website till now. All updates have changed. I am now focusing on a selected amount of things from time to time and perhaps new updates to other things on the odd occasion.</p>
+            <p>Distributions can now only be built manually using this GitHub page if you're already on Arch: <a href="https://github.com/claudemods/claudemods-distribution-iso-creator-Beta" target="_blank"><i class="fab fa-github"></i> claudemods-distribution-iso-creator-Beta</a></p>
+        </div>
+        
+        <!-- Distributions Section -->
+        <div class="content-section">
+            <h2><i class="fas fa-linux"></i> claudemods Distributions Currently Being Updated occasionally</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9em;"><i class="fas fa-random"></i> Random updates only</p>
             
-            <main class="news-main">
-                <div class="news-grid">
-                    <?php foreach($news_items as $item): ?>
-                        <?php if($current_category === 'all' || $current_category === $item['category']): ?>
-                            <article class="news-item">
-                                <h2><?= htmlspecialchars($item['title']) ?></h2>
-                                <div class="news-meta">
-                                    <span><i class="far fa-calendar-alt"></i> <?= htmlspecialchars($item['date']) ?></span>
-                                    <span><i class="far fa-user"></i> <?= htmlspecialchars($item['author']) ?></span>
-                                </div>
-                                <div class="news-content"><?= $item['content'] ?></div>
-                                <div class="news-category">
-                                    <i class="fas fa-tag"></i> <?= ucfirst($item['category']) ?>
-                                </div>
-                            </article>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                    
-                    <?php if($current_category !== 'all' && !in_array($current_category, array_column($news_items, 'category'))): ?>
-                        <article class="news-item">
-                            <h2>No News Found</h2>
-                            <div class="news-content">There are no news items in this category at the moment.</div>
-                        </article>
-                    <?php endif; ?>
+            <div class="distro-grid">
+                <!-- Spitfire Series -->
+                <div class="distro-card spitfire">
+                    <div class="series-header spitfire">🔥 Spitfire Series (Burgundy Theme + Black Theme)</div>
+                    <div style="font-size: 0.9em; line-height: 1.8;">
+                        ⚡ Spitfire CKGE Minimal - Lightweight edition<br>
+                        🛠️ Spitfire CKGE Minimal Dev - Kde Dev included<br>
+                        🎯 Spitfire CKGE Full - Extra applications for gamers e.g steam<br>
+                        🔧 Spitfire CKGE Full Dev - Kde Dev included<br>
+                        🚀 Spitfire CKGBE Full - Black Edition Of Spitfire<br>
+                        📁 Spitfire CKGBE Full Dev - Kde Dev included
+                    </div>
                 </div>
-            </main>
+                
+                <!-- Apex Series -->
+                <div class="distro-card apex">
+                    <div class="series-header apex">🟣 Apex Series (Blue Theme)</div>
+                    <div style="font-size: 0.9em; line-height: 1.8;">
+                        ⚡ Apex CKGE Minimal - Lightweight edition<br>
+                        🛠️ Apex CKGE Minimal Dev - Kde Dev included<br>
+                        🎯 Apex CKGE Full - Extra applications for gamers e.g steam<br>
+                        🔧 Apex CKGE Full Dev - Kde Dev included
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Windows Apps/Scripts Section -->
+        <div class="content-section">
+            <h2><i class="fab fa-windows"></i> Windows Apps/Scripts</h2>
+            <p style="font-size: 0.85em; margin-bottom: 15px;"><i class="fas fa-exclamation-triangle"></i> a select few of other apps and scripts but may still be old</p>
+            
+            <ul class="app-list">
+                <li class="windows">
+                    <span class="app-name"><i class="fas fa-save"></i> claudemods claudebackup</span>
+                    <span class="app-version">v1.01 - 05-06-2026</span>
+                    <a href="https://github.com/claudemods/Windows/tree/main/claudebackup" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/Windows/tree/main/claudebackup</a>
+                </li>
+                <li class="windows">
+                    <span class="app-name"><i class="fas fa-shield-alt"></i> claudemods Defender Remover</span>
+                    <span class="app-version">v1.0 - 14-05-2026</span>
+                    <a href="https://github.com/claudemods/Windows/tree/main/DefenderRemover" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/Windows/tree/main/DefenderRemover</a>
+                </li>
+                <li class="windows">
+                    <span class="app-name"><i class="fas fa-ban"></i> claudemods update blocker</span>
+                    <span class="app-version">v1.01 - 18-05-2026</span>
+                    <a href="https://github.com/claudemods/Windows/tree/main/claudeupdateblocker" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/Windows/tree/main/claudeupdateblocker</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Linux Apps/Scripts Section -->
+        <div class="content-section">
+            <h2><i class="fab fa-linux"></i> Linux Apps/Scripts</h2>
+            <p style="font-size: 0.85em; margin-bottom: 15px;"><i class="fas fa-exclamation-triangle"></i>a select few of other apps and scripts but may still be old</p>
+            
+            <ul class="app-list">
+                <li class="linux">
+                    <span class="app-name"><i class="fas fa-terminal"></i> claudemods multi iso console script</span>
+                    <span class="app-version">v2.03.2</span>
+                    <a href="https://github.com/claudemods/claudemods-multi-iso-konsole-script" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/claudemods-multi-iso-konsole-script</a>
+                </li>
+                <li class="linux">
+                    <span class="app-name"><i class="fas fa-sync-alt"></i> claudemods kde-systemtray-updater</span>
+                    <span class="app-version">v1.03.2 - 19-01-2026</span>
+                    <a href="https://github.com/claudemods/Kde-SystemTray-Updater" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/Kde-SystemTray-Updater</a>
+                </li>
+                <li class="linux">
+                    <span class="app-name"><i class="fas fa-music"></i> claudemods apex music</span>
+                    <span class="app-version">v1.03.1-build - 29-01-2026</span>
+                    <a href="https://github.com/claudemods/ApexMusic" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/ApexMusic</a>
+                </li>
+                <li class="linux">
+                    <span class="app-name"><i class="fas fa-th-large"></i> claudemods 11menu advanced</span>
+                    <span class="app-version">v1.0 - 03-11-2025</span>
+                    <a href="https://github.com/claudemods/11-menu-advanced" target="_blank" class="app-link"><i class="fab fa-github"></i> github.com/claudemods/11-menu-advanced</a>
+                </li>
+            </ul>
         </div>
         
         <footer>
@@ -418,8 +435,8 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click effect to news items
-            document.querySelectorAll('.news-item').forEach(item => {
+            // Add click effect to content sections
+            document.querySelectorAll('.content-section').forEach(item => {
                 item.addEventListener('click', function() {
                     this.style.transform = 'scale(0.98)';
                     setTimeout(() => { this.style.transform = '' }, 200);
@@ -428,7 +445,7 @@ $current_category = isset($_GET['category']) ? $_GET['category'] : 'all';
             
             // Animate elements as they come into view
             const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.news-item');
+                const elements = document.querySelectorAll('.content-section, .distro-card, .app-list li');
                 elements.forEach(el => {
                     const rect = el.getBoundingClientRect();
                     if (rect.top < window.innerHeight - 100) {

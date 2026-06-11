@@ -1,5 +1,5 @@
 <?php
-/** Copyright (c) 2023-2025 claudemods
+/** Copyright (c) 2023-2026 claudemods
  * claudemods website v3.01.2 25-07-2025
  * pwa support added but not working
  * new copyright notice
@@ -871,7 +871,7 @@ $author = "Aaron Douglas D'souza";
             </div>
             
             <div class="badge-row">
-                <a href="https://www.claudemodsreloaded.co.uk" target="_blank" class="badge badge-gold">claudemods website v3.01.2</a>
+                <a href="https://www.claudemodsreloaded.co.uk" target="_blank" class="badge badge-gold">claudemods website v3.01.3</a>
                 <a href="https://www.gtainside.com/user/mapmods100" target="_blank" class="badge badge-gold">gta inside v1.5</a>
                 <a href="https://drive.google.com/drive/folders/1MH0CHGvwdDzGSXpjgfBqvfty_asq6cqf" target="_blank" class="badge badge-gold">Google Drive v2.0</a>
                 <a href="https://sourceforge.net/projects/claudemods/" target="_blank" class="badge badge-gold">Sourceforge v2.0</a>
@@ -893,7 +893,7 @@ $author = "Aaron Douglas D'souza";
         
         <!-- Footer added here -->
         <div class="footer">
-            Copyright (c) 2023-2025 claudemods
+            Copyright (c) 2023-2026 claudemods
         </div>
     </div>
 
@@ -964,7 +964,7 @@ $author = "Aaron Douglas D'souza";
             
             <!-- Footer added here -->
             <div class="footer">
-                Copyright (c) 2023-2025 claudemods
+                Copyright (c) 2023-2026 claudemods
             </div>
         </div>
     </div>
@@ -1252,7 +1252,7 @@ $author = "Aaron Douglas D'souza";
                 
                 <!-- Footer added here -->
                 <div class="footer">
-                    Copyright (c) 2023-2025 claudemods
+                    Copyright (c) 2023-2026 claudemods
                 </div>
             </div>
         </div>
@@ -1290,7 +1290,7 @@ $author = "Aaron Douglas D'souza";
                     <pre class="guide-pre">
 History of Myself: <?php echo $author; ?>
 
-I am 28 years old, originally from London in the UK, though I now live in Manchester.
+I am 29 years old, originally from London in the UK, though I now live in Manchester.
 
 I hate the words "Noob" or "Newbie," but I was once a new Linux user. I started using Nobara around September 2023.
 From there, I began creating a custom taskbar, which can be seen in the project link below:
@@ -1518,7 +1518,7 @@ create arch bootable usb
                 
                 <!-- Footer added here -->
                 <div class="footer">
-                    Copyright (c) 2023-2025 claudemods
+                    Copyright (c) 2023-2026 claudemods
                 </div>
             </div>
         </div>
