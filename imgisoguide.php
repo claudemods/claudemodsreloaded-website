@@ -1,150 +1,51 @@
 <?php
+# v2.0 28-09-2026
+# modern rebuild using shared assets, same wording
 # v1.01 26-07-2025
 #added youtube audio
 header('Content-Type: text/html; charset=utf-8');
+$page_title = 'ClaudeMods ISO Creator Guide';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ClaudeMods ISO Creator Guide</title>
-    <style>
-        body {
-            background: linear-gradient(-45deg, #0066cc, #0099ff, #00ccff, #66ccff);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: #00ffff;
-            font-family: 'Courier New', monospace;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .terminal {
-            border: 2px solid #00ffff;
-            border-radius: 5px;
-            padding: 0;
-            width: 90%;
-            max-width: 1000px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-            background-color: rgba(0, 20, 40, 0.85);
-            overflow: hidden;
-        }
-        
-        .terminal-header {
-            background-color: rgba(0, 40, 80, 0.7);
-            padding: 5px 10px;
-            border-bottom: 1px solid #00ffff;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .terminal-body {
-            padding: 15px;
-        }
-        
-        .title {
-            text-align: center;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #00ffff;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-        }
-        
-        .subtitle {
-            text-align: center;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #66ffff;
-        }
-        
-        .section {
-            margin: 20px 0;
-            border-left: 2px solid #00ffff;
-            padding-left: 10px;
-        }
-        
-        .section-title {
-            font-weight: bold;
-            color: #00ffff;
-            margin-bottom: 10px;
-        }
-        
-        .option {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
-        
-        .option:before {
-            content: "• ";
-            color: #00ffff;
-        }
-        
-        .tip {
-            color: #88ffff;
-            font-style: italic;
-        }
-        
-        .warning {
-            color: #ff6666;
-            font-weight: bold;
-        }
-        
-        .emoji {
-            margin-right: 5px;
-        }
-        
-        /* Hidden YouTube player */
-        #youtube-player {
-            position: absolute;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-        }
-    </style>
+<?php include __DIR__ . '/includes/head.php'; ?>
 </head>
-<body>
-    <!-- Hidden YouTube Player (audio only) -->
-    <div id="youtube-player"></div>
-
-    <div class="terminal">
-        <div class="terminal-header"></div>
+<body class="theme-gradient">
+    <main class="terminal-window">
+        <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <a href="index.php">claudemods reloaded &rarr;</a>
+        </div>
         <div class="terminal-body">
-            <div class="title">ClaudeMods Img ISO Creator v2.01 Guide</div>
-            <div class="subtitle">"Create Bootable ISO Images from Your EXT4/BTRFS System
-            <div class="section">
-                <div class="section-title"><span class="emoji">🔧</span> Quick Start Guide</div>
-                <div class="option">Compile and Run With Install Command: run the executable in your terminal</div>
-                <div class="option">Main Menu Options:
-                    <div style="padding-left: 20px;">
+            <h1 class="t-title">ClaudeMods Img ISO Creator v2.01 Guide</h1>
+            <p class="t-subtitle">Create Bootable ISO Images from Your EXT4/BTRFS System</p>
+
+            <section class="t-section">
+                <h2 class="t-section-title"><span aria-hidden="true">🔧</span> Quick Start Guide</h2>
+                <div class="t-option">Compile and Run With Install Command: run the executable in your terminal</div>
+                <div class="t-option">Main Menu Options:
+                    <div class="t-sub">
                         - Create System Image (EXT4/BTRFS)<br>
                         - ISO Creation Setup<br>
                         - Generate Bootable ISO<br>
                         - Check Disk Usage
                     </div>
                 </div>
-                <div class="option">First Run Configuration: The script will automatically:
-                    <div style="padding-left: 20px;">
+                <div class="t-option">First Run Configuration: The script will automatically:
+                    <div class="t-sub">
                         - Create configuration directory at ~/.config/cmi/<br>
                         - Load any existing settings from configuration.txt<br>
                         - Detect your username and set appropriate paths
                     </div>
                 </div>
-            </div>
-            
-            <div class="section">
-                <div class="section-title"><span class="emoji">📝</span> Step-by-Step Usage Guide</div>
-                
-                <div class="option">System Image Creation:
-                    <div style="padding-left: 20px;">
+            </section>
+
+            <section class="t-section">
+                <h2 class="t-section-title"><span aria-hidden="true">📝</span> Step-by-Step Usage Guide</h2>
+
+                <div class="t-option">System Image Creation:
+                    <div class="t-sub">
                         - Select "Create Image" from main menu<br>
                         - Enter your username when prompted<br>
                         - Specify image size for ext4 (e.g., "6" for 6GB)<br>
@@ -158,9 +59,9 @@ header('Content-Type: text/html; charset=utf-8');
                         &nbsp;&nbsp;• Generate MD5 checksum
                     </div>
                 </div>
-                
-                <div class="option">ISO Preparation: Use the "ISO Creation Setup" menu to configure:
-                    <div style="padding-left: 20px;">
+
+                <div class="t-option">ISO Preparation: Use the "ISO Creation Setup" menu to configure:
+                    <div class="t-sub">
                         • Set ISO Tag - Identifier for your ISO (e.g., "2025")<br>
                         • Set ISO Name - Output filename (e.g., "claudemods.iso")<br>
                         • Set Output Directory - Where to save ISO<br>
@@ -170,9 +71,9 @@ header('Content-Type: text/html; charset=utf-8');
                         • Edit GRUB Config - Customize bootloader settings
                     </div>
                 </div>
-                
-                <div class="option">ISO Generation:
-                    <div style="padding-left: 20px;">
+
+                <div class="t-option">ISO Generation:
+                    <div class="t-sub">
                         - Select "Create ISO" from main menu<br>
                         - The script will:<br>
                         &nbsp;&nbsp;• Verify all required settings are configured<br>
@@ -180,86 +81,39 @@ header('Content-Type: text/html; charset=utf-8');
                         &nbsp;&nbsp;• Save to your specified output directory
                     </div>
                 </div>
-                
-                <div class="option">Post-Creation:
-                    <div style="padding-left: 20px;">
+
+                <div class="t-option">Post-Creation:
+                    <div class="t-sub">
                         - Wait 4 minutes if writing directly to USB<br>
                         - Test ISO in virtual machine before deployment<br>
                         - Checksum file (.md5) is generated for verification
                     </div>
                 </div>
-            </div>
-            
-            <div class="section">
-                <div class="section-title"><span class="emoji">💡</span> Pro Tips</div>
-                <div class="tip">• Configuration persists between runs in ~/.config/cmi/configuration.txt</div>
-                <div class="tip">• Main menu shows current configuration status</div>
-                <div class="tip">• For BTRFS: Uses zstd:22 compression by default</div>
-                <div class="tip">• For EXT4: Uses standard formatting with optimizations</div>
-                <div class="tip">• Excludes temporary and system directories automatically</div>
-            </div>
-            
-            <div class="section">
-                <div class="section-title"><span class="emoji">⚠️</span> Important Notes</div>
-                <div class="warning">• Close all applications before system cloning</div>
-                <div class="warning">• If you reboot, you'll need to re-select vmlinuz</div>
-                <div class="warning">• Edit GRUB config to match your kernel name if not default</div>
-                <div class="warning">• Large images will take time to process - be patient</div>
-            </div>
+            </section>
+
+            <section class="t-section">
+                <h2 class="t-section-title"><span aria-hidden="true">💡</span> Pro Tips</h2>
+                <div class="t-tip">• Configuration persists between runs in ~/.config/cmi/configuration.txt</div>
+                <div class="t-tip">• Main menu shows current configuration status</div>
+                <div class="t-tip">• For BTRFS: Uses zstd:22 compression by default</div>
+                <div class="t-tip">• For EXT4: Uses standard formatting with optimizations</div>
+                <div class="t-tip">• Excludes temporary and system directories automatically</div>
+            </section>
+
+            <section class="t-section">
+                <h2 class="t-section-title"><span aria-hidden="true">⚠️</span> Important Notes</h2>
+                <div class="t-warning">• Close all applications before system cloning</div>
+                <div class="t-warning">• If you reboot, you'll need to re-select vmlinuz</div>
+                <div class="t-warning">• Edit GRUB config to match your kernel name if not default</div>
+                <div class="t-warning">• Large images will take time to process - be patient</div>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <!-- YouTube API Script -->
     <script>
-        // YouTube API Script
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                height: '0',
-                width: '0',
-                videoId: 'cvtc-q7Rjrw',
-                playerVars: {
-                    'autoplay': 1,
-                    'controls': 0,
-                    'disablekb': 1,
-                    'fs': 0,
-                    'loop': 1,
-                    'modestbranding': 1,
-                    'playsinline': 1,
-                    'rel': 0,
-                    'showinfo': 0,
-                    'iv_load_policy': 3,
-                    'enablejsapi': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Mute initially to avoid autoplay restrictions
-            event.target.mute();
-            event.target.playVideo();
-            
-            // Unmute after a short delay
-            setTimeout(function() {
-                event.target.unMute();
-            }, 1000);
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) {
-                event.target.playVideo();
-            }
-        }
+        window.CM_MUSIC = { start: 'main', tracks: { main: { id: 'cvtc-q7Rjrw', label: 'ISO Guide' } } };
     </script>
+    <script src="<?php echo asset('assets/js/music.js'); ?>"></script>
+    <script src="<?php echo asset('assets/js/site.js'); ?>"></script>
 </body>
 </html>
